@@ -1,6 +1,7 @@
 package davidebraghi.U5_W3_D1_Davide_Braghi.payloads.Employees;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 public record NewEmployeeDTO(
@@ -12,6 +13,8 @@ public record NewEmployeeDTO(
         String name,
         @NotEmpty(message = "Mandatory field: insert email")
         @Email
-        String email
+        String email,
+        @NotBlank(message = "Mandatory field: insert valid password")
+        String password
 ) {
 }

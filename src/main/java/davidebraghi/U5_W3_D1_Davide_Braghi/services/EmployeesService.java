@@ -44,6 +44,7 @@ public class EmployeesService {
         newEmployee.setSurname(body.surname());
         newEmployee.setName(body.name());
         newEmployee.setEmail(body.email());
+        newEmployee.setPassword(body.password());
 
         return employeeRepo.save(newEmployee);
     }
@@ -56,6 +57,7 @@ public class EmployeesService {
         found.setSurname(body.getSurname());
         found.setName(body.getName());
         found.setEmail(body.getEmail());
+        found.setPassword(body.getPassword());
 
         return employeeRepo.save(found);
     }
@@ -65,5 +67,9 @@ public class EmployeesService {
     public void findByIdAndDelete(long id) {
         Employee found = this.findById(id);
         employeeRepo.delete(found);
+    }
+
+    public Employee findByEmail(String email) {
+        return this.employeeRepo.findByEmail(email).orElseThrow(() -> new NotFoundException("User with e-mail: " + email + " was not found."));
     }
 }
